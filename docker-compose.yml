@@ -1,0 +1,19 @@
+version: "3.2"
+services:
+  openvpn:
+    build:
+      context: .
+    ports:
+      - "1194:1194/udp"
+    volumes:
+      - openvpn:/etc/openvpn
+    networks:
+      - vpn-net
+    restart: always
+    cap_add:
+      - NET_ADMIN
+volumes:
+  openvpn:
+networks:
+  vpn-net:
+    driver: overlay
